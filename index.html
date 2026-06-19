@@ -12,7 +12,7 @@
   --navy:#1B3A4B;--navy-light:#EEF2F5;
   --gold:#C8962A;--gold-light:#FDF6E3;
   --gray-100:#F7F8FA;--gray-200:#E8EAED;--gray-300:#D1D5DB;--gray-400:#9AA1AD;--gray-600:#6B7280;--gray-700:#3D4450;
-  --white:#FFFFFF;--red:#C0392B;--red-light:#FDF0EE;
+  --white:#FFFFFF;--red:#C0392B;
   --blue:#2471A3;--blue-light:#E8F4FF;
   --orange:#CA6F1E;--orange-light:#FEF5E7;
 }
@@ -125,9 +125,7 @@ body{font-family:'Inter',sans-serif;background:var(--gray-100);color:var(--gray-
     <div class="field-row">
       <div class="field"><label>Data</label><input type="date" id="dataCirurgia"></div>
       <div class="field"><label>Convênio</label>
-        <select id="selConvenio" onchange="onConvenioChange()">
-          <option value="">Selecione...</option>
-        </select>
+        <select id="selConvenio" onchange="onConvenioChange()"><option value="">Selecione...</option></select>
       </div>
     </div>
     <div class="field"><label>Acomodação</label>
@@ -147,10 +145,7 @@ body{font-family:'Inter',sans-serif;background:var(--gray-100);color:var(--gray-
 
 <!-- RESULTADO -->
 <div class="page" id="page-result">
-  <div class="page-header">
-    <h1>Resultado</h1>
-    <p>Honorários calculados</p>
-  </div>
+  <div class="page-header"><h1>Resultado</h1><p>Honorários calculados</p></div>
   <div id="resultadoContent">
     <div class="empty"><div class="empty-icon">📋</div><p>Nenhum cálculo realizado ainda.<br>Vá em Nova Cirurgia para começar.</p></div>
   </div>
@@ -158,10 +153,7 @@ body{font-family:'Inter',sans-serif;background:var(--gray-100);color:var(--gray-
 
 <!-- CADASTRO -->
 <div class="page" id="page-cadastro">
-  <div class="page-header">
-    <h1>Cadastro</h1>
-    <p>Gerencie convênios e procedimentos</p>
-  </div>
+  <div class="page-header"><h1>Cadastro</h1><p>Gerencie convênios e procedimentos</p></div>
   <div class="sync-bar no-print">
     <div class="sync-dot loading" id="syncDot"></div>
     <span id="syncMsg">Conectando...</span>
@@ -200,13 +192,71 @@ body{font-family:'Inter',sans-serif;background:var(--gray-100);color:var(--gray-
   </div>
 </div>
 
+<!-- MODAL EDIÇÃO -->
+<div id="modalEdicao" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:200;padding:20px;overflow-y:auto">
+  <div style="background:white;border-radius:16px;max-width:500px;margin:60px auto;padding:24px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <span style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--navy)">Editar Procedimento</span>
+      <button class="btn-danger" onclick="document.getElementById('modalEdicao').style.display='none'">✕</button>
+    </div>
+    <input type="hidden" id="editProcId">
+    <div class="field-row">
+      <div class="field"><label>Código TUSS</label><input type="text" id="editCodProc" placeholder="Ex.: 3050136-9"></div>
+      <div class="field"><label>Valor (R$)</label><input type="number" id="editValProc" min="0" step="0.01" placeholder="0,00"></div>
+    </div>
+    <div class="field"><label>Nome do procedimento</label><input type="text" id="editNomeProc" placeholder="Nome completo"></div>
+    <button class="btn-primary" onclick="salvarEdicao()" style="margin-top:8px">Salvar alterações</button>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
 // ─── CONFIG ───────────────────────────────────────────────
 const API_KEY = '$2a$10$EEyJg8FPQFufxL0I9HSylO6pGsBV0oxxW54oXxmr1nVC5KR7ogooW';
 const BIN_URL = 'https://api.jsonbin.io/v3/b';
+const APP_VERSION = '2'; // Incrementar para forçar recriação do banco
+if(localStorage.getItem('honorariosVersion') !== APP_VERSION){
+  localStorage.removeItem('honorariosBinId');
+  localStorage.removeItem('honorariosDB');
+  localStorage.setItem('honorariosVersion', APP_VERSION);
+}
 let BIN_ID = localStorage.getItem('honorariosBinId') || null;
+
+// ─── DADOS PRÉ-CADASTRADOS (Bradesco) ────────────────────
+const DADOS_INICIAIS = {
+  convenios: [
+    {id: 1000, nome: 'Bradesco'},
+    {id: 1001, nome: 'CASSI'}
+  ],
+  procedimentos: [
+    // BRADESCO
+    {id: 2001, convId: 1000, codigo: '3050148-2', nome: 'Epistaxe - cauterização da artéria esfenopalatina com microscopia - unilateral por videoendoscopia', valor: 1015.64},
+    {id: 2002, convId: 1000, codigo: '3050232-2', nome: 'Sinusectomia maxilar endonasal por videoendoscopia', valor: 856.31},
+    {id: 2003, convId: 1000, codigo: '3050231-4', nome: 'Etmoidectomia intranasal por videoendoscopia', valor: 856.31},
+    {id: 2004, convId: 1000, codigo: '3050226-8', nome: 'Sinusotomia frontal intranasal', valor: 774.65},
+    {id: 2005, convId: 1000, codigo: '3050225-0', nome: 'Sinusotomia maxilar intranasal', valor: 755.76},
+    {id: 2006, convId: 1000, codigo: '3050136-9', nome: 'Septoplastia (qualquer técnica, sem vídeo)', valor: 523.95},
+    {id: 2007, convId: 1000, codigo: '3050145-8', nome: 'Turbinectomia ou turbinoplastia - unilateral', valor: 181.27},
+    {id: 2008, convId: 1000, codigo: '3020524-7', nome: 'Uvulopalatofaringoplastia (qualquer técnica local)', valor: 960.57},
+    {id: 2009, convId: 1000, codigo: '3020505-0', nome: 'Amigdalectomia das palatinas', valor: 343.22},
+    {id: 2010, convId: 1000, codigo: '3020506-9', nome: 'Amigdalectomia lingual', valor: 343.22},
+    {id: 2011, convId: 1000, codigo: '3020527-1', nome: 'Adenoidectomia por videoendoscopia', valor: 409.93},
+    // CASSI
+    {id: 3001, convId: 1001, codigo: '3050148-2', nome: 'Epistaxe - cauterização da artéria esfenopalatina com microscopia - unilateral por videoendoscopia', valor: 1094.04},
+    {id: 3002, convId: 1001, codigo: '3050232-2', nome: 'Sinusectomia maxilar endonasal por videoendoscopia', valor: 854.15},
+    {id: 3003, convId: 1001, codigo: '3050231-4', nome: 'Etmoidectomia intranasal por videoendoscopia', valor: 854.15},
+    {id: 3004, convId: 1001, codigo: '3050234-9', nome: 'Sinusotomia esfenoidal por videoendoscopia', valor: 854.15},
+    {id: 3005, convId: 1001, codigo: '3050235-7', nome: 'Sinusotomia frontal intranasal por videoendoscopia', valor: 854.15},
+    {id: 3006, convId: 1001, codigo: '3050136-9', nome: 'Septoplastia (qualquer técnica, sem vídeo)', valor: 691.97},
+    {id: 3007, convId: 1001, codigo: '3050145-8', nome: 'Turbinectomia ou turbinoplastia - unilateral', valor: 158.13},
+    {id: 3008, convId: 1001, codigo: '3020524-7', nome: 'Uvulopalatofaringoplastia (qualquer técnica local)', valor: 781.17},
+    {id: 3009, convId: 1001, codigo: '3020505-0', nome: 'Amigdalectomia das palatinas', valor: 310.84},
+    {id: 3010, convId: 1001, codigo: '3020506-9', nome: 'Amigdalectomia lingual', valor: 310.84},
+    {id: 3011, convId: 1001, codigo: '3020527-1', nome: 'Adenoidectomia por videoendoscopia', valor: 848.65},
+    {id: 3012, convId: 1001, codigo: '3040315-4', nome: 'Timpanotomia para tubo de ventilação - unilateral', valor: 432.48}
+  ]
+};
 
 // ─── STATE ────────────────────────────────────────────────
 let tipo = 'enfermaria';
@@ -219,27 +269,30 @@ async function loadDB(){
   setSyncStatus('loading','Conectando...');
   try {
     if(!BIN_ID){
-      // Criar bin novo
+      // Criar bin com dados iniciais
       const r = await fetch(BIN_URL, {
         method:'POST',
         headers:{'Content-Type':'application/json','X-Master-Key':API_KEY,'X-Bin-Name':'honorarios-db','X-Bin-Private':'false'},
-        body: JSON.stringify(db)
+        body: JSON.stringify(DADOS_INICIAIS)
       });
       const j = await r.json();
       BIN_ID = j.metadata.id;
       localStorage.setItem('honorariosBinId', BIN_ID);
+      db = DADOS_INICIAIS;
     } else {
       const r = await fetch(`${BIN_URL}/${BIN_ID}/latest`, {
         headers:{'X-Master-Key':API_KEY}
       });
       const j = await r.json();
       db = j.record;
+      // Garantir que dados iniciais existem
+      if(!db.convenios) db = DADOS_INICIAIS;
     }
-    setSyncStatus('ok','Sincronizado');
+    setSyncStatus('ok','Sincronizado ✓');
     afterLoad();
   } catch(e){
     setSyncStatus('err','Sem conexão — dados locais');
-    try{ db = JSON.parse(localStorage.getItem('honorariosDB')) || {convenios:[],procedimentos:[]}; }catch(ex){}
+    try{ db = JSON.parse(localStorage.getItem('honorariosDB')) || DADOS_INICIAIS; }catch(ex){ db = DADOS_INICIAIS; }
     afterLoad();
   }
 }
@@ -255,7 +308,7 @@ async function saveDB(){
       headers:{'Content-Type':'application/json','X-Master-Key':API_KEY},
       body: JSON.stringify(db)
     });
-    setSyncStatus('ok','Sincronizado');
+    setSyncStatus('ok','Sincronizado ✓');
   } catch(e){
     setSyncStatus('err','Salvo localmente (sem internet)');
   }
@@ -281,7 +334,7 @@ function goPage(p){
   document.querySelectorAll('.nav-btn').forEach(el=>el.classList.remove('active'));
   document.getElementById('page-'+p).classList.add('active');
   document.querySelectorAll('.nav-btn')[p==='calc'?0:p==='result'?1:2].classList.add('active');
-  if(p==='cadastro'){ loadDB(); }
+  if(p==='cadastro') loadDB();
 }
 
 // ─── INIT ─────────────────────────────────────────────────
@@ -352,8 +405,7 @@ function renderCadastro(){
   el.innerHTML='';
   db.convenios.forEach(c=>{
     const procs = db.procedimentos.filter(p=>p.convId===c.id);
-    const sec = document.createElement('div');
-    sec.style.marginBottom='16px';
+    const sec = document.createElement('div'); sec.style.marginBottom='16px';
     sec.innerHTML=`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
       <span style="font-weight:700;color:var(--navy);font-size:0.92rem">${c.nome}</span>
       <button class="btn-danger" onclick="excluirConvenio(${c.id})">🗑</button>
@@ -369,6 +421,7 @@ function renderCadastro(){
           <div class="item-sub">${p.codigo||'sem código'}</div>
         </div>
         <div class="item-valor">${fmt(p.valor)}</div>
+        <button class="btn-icon" onclick="abrirEdicao(${p.id})" title="Editar">✏️</button>
         <button class="btn-danger" onclick="excluirProc(${p.id})">✕</button>`;
         ul.appendChild(row);
       });
@@ -395,13 +448,12 @@ function abrirSelProc(){
   const procs = db.procedimentos.filter(p=>p.convId===convId);
   const modal = document.getElementById('modalProcList');
   if(!procs.length){
-    modal.innerHTML='<div class="empty"><div class="empty-icon">📋</div><p>Nenhum procedimento cadastrado para este convênio.<br>Vá em Cadastro para adicionar.</p></div>';
+    modal.innerHTML='<div class="empty"><div class="empty-icon">📋</div><p>Nenhum procedimento cadastrado para este convênio.</p></div>';
   } else {
     modal.innerHTML='';
     procs.forEach(p=>{
       const jaAdicionado = procLancados.find(l=>l.id===p.id);
       const row=document.createElement('div'); row.className='item-row'; row.style.marginBottom='6px';
-      row.style.cursor=jaAdicionado?'default':'pointer';
       row.style.opacity=jaAdicionado?'0.5':'1';
       row.innerHTML=`<div class="item-info">
         <div class="item-name">${p.nome}</div>
@@ -535,7 +587,33 @@ function novaCirurgia(){
   goPage('calc');
 }
 
-// ─── UTILS ────────────────────────────────────────────────
+// ─── EDIÇÃO ───────────────────────────────────────────────
+function abrirEdicao(id){
+  const p = db.procedimentos.find(x=>x.id===id);
+  if(!p) return;
+  document.getElementById('editProcId').value = p.id;
+  document.getElementById('editCodProc').value = p.codigo||'';
+  document.getElementById('editNomeProc').value = p.nome;
+  document.getElementById('editValProc').value = p.valor;
+  document.getElementById('modalEdicao').style.display='block';
+}
+
+async function salvarEdicao(){
+  const id = parseInt(document.getElementById('editProcId').value);
+  const codigo = document.getElementById('editCodProc').value.trim();
+  const nome   = document.getElementById('editNomeProc').value.trim();
+  const valor  = parseFloat(document.getElementById('editValProc').value);
+  if(!nome){ showToast('Digite o nome do procedimento'); return; }
+  if(!valor||valor<=0){ showToast('Digite o valor'); return; }
+  const idx = db.procedimentos.findIndex(x=>x.id===id);
+  if(idx===-1) return;
+  db.procedimentos[idx] = {...db.procedimentos[idx], codigo, nome, valor};
+  await saveDB();
+  document.getElementById('modalEdicao').style.display='none';
+  renderCadastro();
+  showToast('Procedimento atualizado! ✓');
+}
+
 function fmt(v){ return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'}); }
 function fmtData(d){ if(!d)return''; const[y,m,day]=d.split('-'); return`${day}/${m}/${y}`; }
 function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2500); }
