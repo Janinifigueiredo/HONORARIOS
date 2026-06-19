@@ -569,11 +569,17 @@ function calcular(){
   </div>
   <div class="action-row no-print">
     <button class="btn-pdf" onclick="window.print()">⬇ Exportar PDF</button>
-    <button class="btn-nova" onclick="novaCirurgia()">↺ Nova cirurgia</button>
+    <button class="btn-nova" onclick="editarCirurgia()">✏️ Editar</button>
+    <button class="btn-nova" onclick="novaCirurgia()" style="border-color:var(--red);color:var(--red)">🗑 Apagar</button>
   </div>`;
 
   document.getElementById('resultadoContent').innerHTML=html;
   goPage('result');
+}
+
+function editarCirurgia(){
+  // Volta para Nova Cirurgia mantendo todos os dados preenchidos
+  goPage('calc');
 }
 
 function novaCirurgia(){
