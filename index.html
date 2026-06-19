@@ -213,11 +213,10 @@ body{font-family:'Inter',sans-serif;background:var(--gray-100);color:var(--gray-
 <script>
 const API_KEY = '$2a$10$EEyJg8FPQFufxL0I9HSylO6pGsBV0oxxW54oXxmr1nVC5KR7ogooW';
 const BIN_URL = 'https://api.jsonbin.io/v3/b';
-const APP_VERSION = '3';
+const APP_VERSION = '4';
 if(localStorage.getItem('honorariosVersion') !== APP_VERSION){
-  localStorage.removeItem('honorariosBinId');
-  localStorage.removeItem('honorariosDB');
   localStorage.setItem('honorariosVersion', APP_VERSION);
+  // Não apaga BIN_ID nem DB — preserva histórico e cadastro existentes
 }
 let BIN_ID = localStorage.getItem('honorariosBinId') || null;
 
@@ -284,6 +283,7 @@ async function loadDB(){
       db=j.record;
       if(!db.convenios) db=JSON.parse(JSON.stringify(DADOS_INICIAIS));
       if(!db.historico) db.historico=[];
+      if(!db.procedimentos) db.procedimentos=[];
     }
     setSyncStatus('ok','Sincronizado ✓');
   } catch(e){
