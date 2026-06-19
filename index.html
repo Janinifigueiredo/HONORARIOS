@@ -152,6 +152,7 @@ body{font-family:'Inter',sans-serif;background:var(--gray-100);color:var(--gray-
 <!-- HISTÓRICO -->
 <div class="page" id="page-historico">
   <div class="page-header"><h1>Histórico</h1><p>Cirurgias salvas</p></div>
+  <div class="sync-bar no-print"><div class="sync-dot loading" id="syncDotH"></div><span id="syncMsgH">Conectando...</span><button class="btn-icon" style="margin-left:auto" onclick="recarregarDB()">↺ Atualizar</button></div>
   <div id="historicoList"><div class="empty"><div class="empty-icon">⏳</div><p>Carregando...</p></div></div>
 </div>
 
@@ -268,31 +269,44 @@ function goPage(p){
 }
 
 // ─── JSONBIN ──────────────────────────────────────────────
+let dbCarregado = false;
+
 async function loadDB(){
+  // Se já carregou, só re-renderiza
+  if(dbCarregado){ renderSelConvenio(); renderCadastro(); renderHistorico(); return; }
   setSyncStatus('loading','Conectando...');
   try{
     if(!BIN_ID){
+      // Primeiro acesso: cria bin com dados iniciais
       const r=await fetch(BIN_URL,{method:'POST',headers:{'Content-Type':'application/json','X-Master-Key':API_KEY,'X-Bin-Name':'honorarios-db','X-Bin-Private':'false'},body:JSON.stringify(DADOS_INICIAIS)});
       const j=await r.json();
       BIN_ID=j.metadata.id;
       localStorage.setItem('honorariosBinId',BIN_ID);
       db=JSON.parse(JSON.stringify(DADOS_INICIAIS));
     } else {
+      // Acessos seguintes: carrega da nuvem
       const r=await fetch(`${BIN_URL}/${BIN_ID}/latest`,{headers:{'X-Master-Key':API_KEY}});
       const j=await r.json();
-      db=j.record;
-      if(!db.convenios) db=JSON.parse(JSON.stringify(DADOS_INICIAIS));
-      if(!db.historico) db.historico=[];
-      if(!db.procedimentos) db.procedimentos=[];
+      const remoto = j.record;
+      // Garante que campos existem sem apagar nada
+      db.convenios = remoto.convenios || db.convenios || [];
+      db.procedimentos = remoto.procedimentos || db.procedimentos || [];
+      db.historico = remoto.historico || db.historico || [];
     }
+    localStorage.setItem('honorariosDB',JSON.stringify(db));
     setSyncStatus('ok','Sincronizado ✓');
   } catch(e){
     setSyncStatus('err','Offline — dados locais');
-    try{db=JSON.parse(localStorage.getItem('honorariosDB'))||JSON.parse(JSON.stringify(DADOS_INICIAIS));}catch(ex){db=JSON.parse(JSON.stringify(DADOS_INICIAIS));}
+    // Só usa local se ainda não tem nada em memória
+    if(!db.convenios.length){
+      try{
+        const local = JSON.parse(localStorage.getItem('honorariosDB'));
+        if(local){ db.convenios=local.convenios||[]; db.procedimentos=local.procedimentos||[]; db.historico=local.historico||[]; }
+      }catch(ex){}
+    }
   }
-  renderSelConvenio();
-  renderCadastro();
-  renderHistorico();
+  dbCarregado = true;
+  renderSelConvenio(); renderCadastro(); renderHistorico();
 }
 
 async function saveDB(){
@@ -307,12 +321,21 @@ async function saveDB(){
   saving=false;
 }
 
+async function recarregarDB(){
+  dbCarregado = false;
+  await loadDB();
+  showToast('Atualizado! ✓');
+}
+
 function setSyncStatus(s,m){
-  const d=document.getElementById('syncDot');
-  const t=document.getElementById('syncMsg');
-  if(!d)return;
-  d.className='sync-dot '+s;
-  t.textContent=m;
+  ['syncDot','syncDotH'].forEach(id=>{
+    const d=document.getElementById(id);
+    if(d) d.className='sync-dot '+s;
+  });
+  ['syncMsg','syncMsgH'].forEach(id=>{
+    const t=document.getElementById(id);
+    if(t) t.textContent=m;
+  });
 }
 
 // ─── INIT ─────────────────────────────────────────────────
