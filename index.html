@@ -10,15 +10,14 @@
 :root{
   --teal:#3D7A6E;--teal-light:#EAF3F1;--teal-mid:#5A9E90;
   --navy:#1B3A4B;--navy-light:#EEF2F5;
-  --gold:#C8962A;--gold-light:#FDF6E3;
-  --gray-100:#F7F8FA;--gray-200:#E8EAED;--gray-300:#D1D5DB;--gray-400:#9AA1AD;--gray-600:#6B7280;--gray-700:#3D4450;
+  --gray-100:#F7F8FA;--gray-200:#E8EAED;--gray-400:#9AA1AD;--gray-600:#6B7280;--gray-700:#3D4450;
   --white:#FFFFFF;--red:#C0392B;
   --blue:#2471A3;--blue-light:#E8F4FF;
   --orange:#CA6F1E;--orange-light:#FEF5E7;
 }
 body{font-family:'Inter',sans-serif;background:var(--gray-100);color:var(--gray-700);min-height:100vh;padding:0}
-.nav{display:flex;background:var(--navy);padding:0 16px}
-.nav-btn{flex:1;padding:14px 8px;border:none;background:transparent;color:rgba(255,255,255,0.5);font-family:'Inter',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;cursor:pointer;border-bottom:3px solid transparent;transition:all 0.18s}
+.nav{display:flex;background:var(--navy);padding:0 8px}
+.nav-btn{flex:1;padding:13px 4px;border:none;background:transparent;color:rgba(255,255,255,0.5);font-family:'Inter',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;border-bottom:3px solid transparent;transition:all 0.18s}
 .nav-btn.active{color:white;border-bottom-color:var(--teal-mid)}
 .page{display:none;padding:20px 16px 60px;max-width:680px;margin:0 auto}
 .page.active{display:block}
@@ -63,63 +62,61 @@ body{font-family:'Inter',sans-serif;background:var(--gray-100);color:var(--gray-
 .result-meta-line{font-size:0.84rem;color:var(--gray-600);margin-bottom:2px}
 .result-meta-line strong{color:var(--navy)}
 .result-table{width:100%;border-collapse:collapse;margin-bottom:16px}
-.result-table th{text-align:left;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--gray-400);font-weight:700;padding:0 0 8px;border-bottom:1px solid var(--gray-200)}
-.result-table td{padding:9px 0;font-size:0.85rem;border-bottom:1px solid var(--gray-100);vertical-align:middle}
-.result-table td:last-child{text-align:right;font-weight:600;color:var(--navy);white-space:nowrap}
-.result-table tfoot td{padding-top:12px;border-bottom:none;font-weight:700;font-size:0.92rem}
-.result-table tfoot td:last-child{color:var(--teal);font-size:1rem}
-.pct-note{font-size:0.75rem;color:var(--gray-400);margin-left:4px}
+.result-table th{text-align:left;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--gray-400);font-weight:700;padding:0 0 8px;border-bottom:1px solid var(--gray-200)}
+.result-table td{padding:8px 0;font-size:0.82rem;border-bottom:1px solid var(--gray-100);vertical-align:middle}
+.result-table td:last-child,.result-table td:nth-last-child(2){text-align:right;font-weight:600;white-space:nowrap}
+.result-table td:last-child{color:var(--blue)}
+.result-table tfoot td{padding-top:12px;border-bottom:none;font-weight:700;font-size:0.9rem}
+.result-table tfoot td:nth-last-child(2){color:var(--navy)}
+.result-table tfoot td:last-child{color:var(--blue)}
+.pct-note{font-size:0.72rem;color:var(--gray-400);margin-left:4px}
 .func-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
 .func-card{border-radius:12px;padding:12px 10px;text-align:center}
 .func-card.c1{background:var(--teal-light)}.func-card.c2{background:var(--blue-light)}.func-card.c3{background:var(--orange-light)}
 .func-label{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:5px}
 .func-card.c1 .func-label{color:var(--teal)}.func-card.c2 .func-label{color:var(--blue)}.func-card.c3 .func-label{color:var(--orange)}
-.func-valor{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--navy);line-height:1.1}
+.func-valor{font-family:'DM Serif Display',serif;font-size:1.05rem;color:var(--navy);line-height:1.1}
 .func-pct{font-size:0.7rem;color:var(--gray-400);margin-top:2px}
 .total-bar{display:flex;justify-content:space-between;align-items:center;background:var(--navy);border-radius:12px;padding:15px 18px;margin-bottom:14px}
 .total-bar-label{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:rgba(255,255,255,0.55)}
 .total-bar-valor{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--white)}
-.action-row{display:flex;gap:10px}
-.btn-pdf{flex:1;padding:13px;background:var(--navy);color:var(--white);border:none;border-radius:12px;font-family:'Inter',sans-serif;font-size:0.88rem;font-weight:600;cursor:pointer;transition:background 0.18s}
+.action-row{display:flex;gap:8px;flex-wrap:wrap}
+.btn-pdf{flex:1;padding:13px;background:var(--navy);color:var(--white);border:none;border-radius:12px;font-family:'Inter',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;transition:background 0.18s;min-width:100px}
 .btn-pdf:hover{background:#264a60}
-.btn-nova{flex:1;padding:13px;background:none;border:1.5px solid var(--gray-200);border-radius:12px;font-family:'Inter',sans-serif;font-size:0.88rem;color:var(--gray-400);cursor:pointer;transition:all 0.18s}
-.btn-nova:hover{border-color:var(--red);color:var(--red)}
+.btn-sec{flex:1;padding:13px;background:none;border:1.5px solid var(--gray-200);border-radius:12px;font-family:'Inter',sans-serif;font-size:0.85rem;color:var(--gray-600);cursor:pointer;transition:all 0.18s;min-width:100px}
+.btn-sec:hover{border-color:var(--teal);color:var(--teal)}
+.btn-del{flex:1;padding:13px;background:none;border:1.5px solid var(--gray-200);border-radius:12px;font-family:'Inter',sans-serif;font-size:0.85rem;color:var(--red);border-color:var(--red);cursor:pointer;transition:all 0.18s;min-width:100px}
 .empty{text-align:center;padding:32px 16px;color:var(--gray-400)}
 .empty-icon{font-size:2rem;margin-bottom:8px}
 .empty p{font-size:0.88rem}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--navy);color:white;padding:10px 20px;border-radius:30px;font-size:0.85rem;font-weight:500;opacity:0;transition:all 0.3s;z-index:999;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .sync-bar{display:flex;align-items:center;gap:8px;font-size:0.78rem;color:var(--gray-400);margin-bottom:12px}
-.sync-dot{width:8px;height:8px;border-radius:50%;background:var(--gray-300);flex-shrink:0}
-.sync-dot.ok{background:#27AE60}.sync-dot.err{background:var(--red)}.sync-dot.loading{background:var(--gold);animation:pulse 1s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.sync-dot{width:8px;height:8px;border-radius:50%;background:var(--gray-200);flex-shrink:0}
+.sync-dot.ok{background:#27AE60}.sync-dot.err{background:var(--red)}.sync-dot.loading{background:#F39C12;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
 @media print{
   .nav,.no-print{display:none!important}
-  .page{display:block!important;padding:0;max-width:100%}
-  #page-calc{display:none!important}
-  #page-result{display:block!important}
-  #page-cadastro{display:none!important}
+  .page{display:none!important}
+  #page-result{display:block!important;padding:0;max-width:100%}
   .card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}
   .total-bar,.func-card{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
-@media(max-width:400px){.func-grid{grid-template-columns:1fr}.field-row{grid-template-columns:1fr}}
+@media(max-width:420px){.func-grid{grid-template-columns:1fr}.field-row{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
 <div class="nav">
-  <button class="nav-btn active" onclick="goPage('calc')">Nova Cirurgia</button>
-  <button class="nav-btn" onclick="goPage('result')">Resultado</button>
-  <button class="nav-btn" onclick="goPage('historico')">Histórico</button>
-  <button class="nav-btn" onclick="goPage('cadastro')">Cadastro</button>
+  <button class="nav-btn active" id="nav-calc" onclick="goPage('calc')">Cirurgia</button>
+  <button class="nav-btn" id="nav-result" onclick="goPage('result')">Resultado</button>
+  <button class="nav-btn" id="nav-historico" onclick="goPage('historico')">Histórico</button>
+  <button class="nav-btn" id="nav-cadastro" onclick="goPage('cadastro')">Cadastro</button>
 </div>
 
 <!-- NOVA CIRURGIA -->
 <div class="page active" id="page-calc">
-  <div class="page-header">
-    <h1>Nova Cirurgia</h1>
-    <p>Preencha os dados e adicione os procedimentos</p>
-  </div>
+  <div class="page-header"><h1>Nova Cirurgia</h1><p>Preencha os dados e adicione os procedimentos</p></div>
   <div class="card">
     <div class="card-title">Identificação</div>
     <div class="field"><label>Nome do paciente</label><input type="text" id="nomePaciente" placeholder="Nome completo"></div>
@@ -148,33 +145,28 @@ body{font-family:'Inter',sans-serif;background:var(--gray-100);color:var(--gray-
 <div class="page" id="page-result">
   <div class="page-header"><h1>Resultado</h1><p>Honorários calculados</p></div>
   <div id="resultadoContent">
-    <div class="empty"><div class="empty-icon">📋</div><p>Nenhum cálculo realizado ainda.<br>Vá em Nova Cirurgia para começar.</p></div>
+    <div class="empty"><div class="empty-icon">📋</div><p>Nenhum cálculo realizado ainda.</p></div>
   </div>
 </div>
 
 <!-- HISTÓRICO -->
 <div class="page" id="page-historico">
-  <div class="page-header"><h1>Histórico</h1><p>Cirurgias anteriores</p></div>
+  <div class="page-header"><h1>Histórico</h1><p>Cirurgias salvas</p></div>
   <div id="historicoList"><div class="empty"><div class="empty-icon">⏳</div><p>Carregando...</p></div></div>
 </div>
 
 <!-- CADASTRO -->
 <div class="page" id="page-cadastro">
   <div class="page-header"><h1>Cadastro</h1><p>Gerencie convênios e procedimentos</p></div>
-  <div class="sync-bar no-print">
-    <div class="sync-dot loading" id="syncDot"></div>
-    <span id="syncMsg">Conectando...</span>
-  </div>
+  <div class="sync-bar no-print"><div class="sync-dot loading" id="syncDot"></div><span id="syncMsg">Conectando...</span></div>
   <div class="card">
     <div class="card-title">Adicionar Convênio</div>
-    <div class="field"><label>Nome do convênio</label><input type="text" id="nomeConvenio" placeholder="Ex.: Bradesco, Unimed..."></div>
+    <div class="field"><label>Nome</label><input type="text" id="nomeConvenio" placeholder="Ex.: Bradesco, Unimed..."></div>
     <button class="btn-primary" onclick="salvarConvenio()">Salvar convênio</button>
   </div>
   <div class="card">
     <div class="card-title">Adicionar Procedimento</div>
-    <div class="field"><label>Convênio</label>
-      <select id="selConvProc"><option value="">Selecione o convênio...</option></select>
-    </div>
+    <div class="field"><label>Convênio</label><select id="selConvProc"><option value="">Selecione...</option></select></div>
     <div class="field-row">
       <div class="field"><label>Código TUSS</label><input type="text" id="codProc" placeholder="Ex.: 3050136-9"></div>
       <div class="field"><label>Valor (R$)</label><input type="number" id="valProc" min="0" step="0.01" placeholder="0,00"></div>
@@ -188,8 +180,8 @@ body{font-family:'Inter',sans-serif;background:var(--gray-100);color:var(--gray-
   </div>
 </div>
 
-<!-- MODAL -->
-<div id="modalOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:100;padding:20px;overflow-y:auto" onclick="fecharModal(event)">
+<!-- MODAL SELEÇÃO -->
+<div id="modalOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:100;padding:20px;overflow-y:auto" onclick="fecharModal(event)">
   <div style="background:white;border-radius:16px;max-width:600px;margin:40px auto;padding:20px" onclick="event.stopPropagation()">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
       <span style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--navy)">Selecionar Procedimento</span>
@@ -200,7 +192,7 @@ body{font-family:'Inter',sans-serif;background:var(--gray-100);color:var(--gray-
 </div>
 
 <!-- MODAL EDIÇÃO -->
-<div id="modalEdicao" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:200;padding:20px;overflow-y:auto">
+<div id="modalEdicao" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:200;padding:20px;overflow-y:auto">
   <div style="background:white;border-radius:16px;max-width:500px;margin:60px auto;padding:24px">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
       <span style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--navy)">Editar Procedimento</span>
@@ -208,10 +200,10 @@ body{font-family:'Inter',sans-serif;background:var(--gray-100);color:var(--gray-
     </div>
     <input type="hidden" id="editProcId">
     <div class="field-row">
-      <div class="field"><label>Código TUSS</label><input type="text" id="editCodProc" placeholder="Ex.: 3050136-9"></div>
-      <div class="field"><label>Valor (R$)</label><input type="number" id="editValProc" min="0" step="0.01" placeholder="0,00"></div>
+      <div class="field"><label>Código TUSS</label><input type="text" id="editCodProc"></div>
+      <div class="field"><label>Valor (R$)</label><input type="number" id="editValProc" min="0" step="0.01"></div>
     </div>
-    <div class="field"><label>Nome do procedimento</label><input type="text" id="editNomeProc" placeholder="Nome completo"></div>
+    <div class="field"><label>Nome</label><input type="text" id="editNomeProc"></div>
     <button class="btn-primary" onclick="salvarEdicao()" style="margin-top:8px">Salvar alterações</button>
   </div>
 </div>
@@ -219,10 +211,9 @@ body{font-family:'Inter',sans-serif;background:var(--gray-100);color:var(--gray-
 <div class="toast" id="toast"></div>
 
 <script>
-// ─── CONFIG ───────────────────────────────────────────────
 const API_KEY = '$2a$10$EEyJg8FPQFufxL0I9HSylO6pGsBV0oxxW54oXxmr1nVC5KR7ogooW';
 const BIN_URL = 'https://api.jsonbin.io/v3/b';
-const APP_VERSION = '2'; // Incrementar para forçar recriação do banco
+const APP_VERSION = '3';
 if(localStorage.getItem('honorariosVersion') !== APP_VERSION){
   localStorage.removeItem('honorariosBinId');
   localStorage.removeItem('honorariosDB');
@@ -230,214 +221,132 @@ if(localStorage.getItem('honorariosVersion') !== APP_VERSION){
 }
 let BIN_ID = localStorage.getItem('honorariosBinId') || null;
 
-// ─── DADOS PRÉ-CADASTRADOS (Bradesco) ────────────────────
 const DADOS_INICIAIS = {
+  historico: [],
   convenios: [
-    {id: 1000, nome: 'Bradesco'},
-    {id: 1001, nome: 'CASSI'}
+    {id:1000, nome:'Bradesco'},
+    {id:1001, nome:'CASSI'}
   ],
   procedimentos: [
-    // BRADESCO
-    {id: 2001, convId: 1000, codigo: '3050148-2', nome: 'Epistaxe - cauterização da artéria esfenopalatina com microscopia - unilateral por videoendoscopia', valor: 1015.64},
-    {id: 2002, convId: 1000, codigo: '3050232-2', nome: 'Sinusectomia maxilar endonasal por videoendoscopia', valor: 856.31},
-    {id: 2003, convId: 1000, codigo: '3050231-4', nome: 'Etmoidectomia intranasal por videoendoscopia', valor: 856.31},
-    {id: 2004, convId: 1000, codigo: '3050226-8', nome: 'Sinusotomia frontal intranasal', valor: 774.65},
-    {id: 2005, convId: 1000, codigo: '3050225-0', nome: 'Sinusotomia maxilar intranasal', valor: 755.76},
-    {id: 2006, convId: 1000, codigo: '3050136-9', nome: 'Septoplastia (qualquer técnica, sem vídeo)', valor: 523.95},
-    {id: 2007, convId: 1000, codigo: '3050145-8', nome: 'Turbinectomia ou turbinoplastia - unilateral', valor: 181.27},
-    {id: 2008, convId: 1000, codigo: '3020524-7', nome: 'Uvulopalatofaringoplastia (qualquer técnica local)', valor: 960.57},
-    {id: 2009, convId: 1000, codigo: '3020505-0', nome: 'Amigdalectomia das palatinas', valor: 343.22},
-    {id: 2010, convId: 1000, codigo: '3020506-9', nome: 'Amigdalectomia lingual', valor: 343.22},
-    {id: 2011, convId: 1000, codigo: '3020527-1', nome: 'Adenoidectomia por videoendoscopia', valor: 409.93},
-    // CASSI
-    {id: 3001, convId: 1001, codigo: '3050148-2', nome: 'Epistaxe - cauterização da artéria esfenopalatina com microscopia - unilateral por videoendoscopia', valor: 1094.04},
-    {id: 3002, convId: 1001, codigo: '3050232-2', nome: 'Sinusectomia maxilar endonasal por videoendoscopia', valor: 854.15},
-    {id: 3003, convId: 1001, codigo: '3050231-4', nome: 'Etmoidectomia intranasal por videoendoscopia', valor: 854.15},
-    {id: 3004, convId: 1001, codigo: '3050234-9', nome: 'Sinusotomia esfenoidal por videoendoscopia', valor: 854.15},
-    {id: 3005, convId: 1001, codigo: '3050235-7', nome: 'Sinusotomia frontal intranasal por videoendoscopia', valor: 854.15},
-    {id: 3006, convId: 1001, codigo: '3050136-9', nome: 'Septoplastia (qualquer técnica, sem vídeo)', valor: 691.97},
-    {id: 3007, convId: 1001, codigo: '3050145-8', nome: 'Turbinectomia ou turbinoplastia - unilateral', valor: 158.13},
-    {id: 3008, convId: 1001, codigo: '3020524-7', nome: 'Uvulopalatofaringoplastia (qualquer técnica local)', valor: 781.17},
-    {id: 3009, convId: 1001, codigo: '3020505-0', nome: 'Amigdalectomia das palatinas', valor: 310.84},
-    {id: 3010, convId: 1001, codigo: '3020506-9', nome: 'Amigdalectomia lingual', valor: 310.84},
-    {id: 3011, convId: 1001, codigo: '3020527-1', nome: 'Adenoidectomia por videoendoscopia', valor: 848.65},
-    {id: 3012, convId: 1001, codigo: '3040315-4', nome: 'Timpanotomia para tubo de ventilação - unilateral', valor: 432.48}
+    {id:2001,convId:1000,codigo:'3050148-2',nome:'Epistaxe - cauterização da artéria esfenopalatina com microscopia - unilateral por videoendoscopia',valor:1015.64},
+    {id:2002,convId:1000,codigo:'3050232-2',nome:'Sinusectomia maxilar endonasal por videoendoscopia',valor:856.31},
+    {id:2003,convId:1000,codigo:'3050231-4',nome:'Etmoidectomia intranasal por videoendoscopia',valor:856.31},
+    {id:2004,convId:1000,codigo:'3050226-8',nome:'Sinusotomia frontal intranasal',valor:774.65},
+    {id:2005,convId:1000,codigo:'3050225-0',nome:'Sinusotomia maxilar intranasal',valor:755.76},
+    {id:2006,convId:1000,codigo:'3050136-9',nome:'Septoplastia (qualquer técnica, sem vídeo)',valor:523.95},
+    {id:2007,convId:1000,codigo:'3050145-8',nome:'Turbinectomia ou turbinoplastia - unilateral',valor:181.27},
+    {id:2008,convId:1000,codigo:'3020524-7',nome:'Uvulopalatofaringoplastia (qualquer técnica local)',valor:960.57},
+    {id:2009,convId:1000,codigo:'3020505-0',nome:'Amigdalectomia das palatinas',valor:343.22},
+    {id:2010,convId:1000,codigo:'3020506-9',nome:'Amigdalectomia lingual',valor:343.22},
+    {id:2011,convId:1000,codigo:'3020527-1',nome:'Adenoidectomia por videoendoscopia',valor:409.93},
+    {id:3001,convId:1001,codigo:'3050148-2',nome:'Epistaxe - cauterização da artéria esfenopalatina com microscopia - unilateral por videoendoscopia',valor:1094.04},
+    {id:3002,convId:1001,codigo:'3050232-2',nome:'Sinusectomia maxilar endonasal por videoendoscopia',valor:854.15},
+    {id:3003,convId:1001,codigo:'3050231-4',nome:'Etmoidectomia intranasal por videoendoscopia',valor:854.15},
+    {id:3004,convId:1001,codigo:'3050234-9',nome:'Sinusotomia esfenoidal por videoendoscopia',valor:854.15},
+    {id:3005,convId:1001,codigo:'3050235-7',nome:'Sinusotomia frontal intranasal por videoendoscopia',valor:854.15},
+    {id:3006,convId:1001,codigo:'3050136-9',nome:'Septoplastia (qualquer técnica, sem vídeo)',valor:691.97},
+    {id:3007,convId:1001,codigo:'3050145-8',nome:'Turbinectomia ou turbinoplastia - unilateral',valor:158.13},
+    {id:3008,convId:1001,codigo:'3020524-7',nome:'Uvulopalatofaringoplastia (qualquer técnica local)',valor:781.17},
+    {id:3009,convId:1001,codigo:'3020505-0',nome:'Amigdalectomia das palatinas',valor:310.84},
+    {id:3010,convId:1001,codigo:'3020506-9',nome:'Amigdalectomia lingual',valor:310.84},
+    {id:3011,convId:1001,codigo:'3020527-1',nome:'Adenoidectomia por videoendoscopia',valor:848.65},
+    {id:3012,convId:1001,codigo:'3040315-4',nome:'Timpanotomia para tubo de ventilação - unilateral',valor:432.48}
   ]
 };
 
-// ─── STATE ────────────────────────────────────────────────
 let tipo = 'enfermaria';
 let procLancados = [];
-let db = {convenios:[], procedimentos:[]};
+let db = {convenios:[],procedimentos:[],historico:[]};
 let saving = false;
-
-// ─── JSONBIN ──────────────────────────────────────────────
-async function loadDB(){
-  setSyncStatus('loading','Conectando...');
-  try {
-    if(!BIN_ID){
-      // Criar bin com dados iniciais
-      const r = await fetch(BIN_URL, {
-        method:'POST',
-        headers:{'Content-Type':'application/json','X-Master-Key':API_KEY,'X-Bin-Name':'honorarios-db','X-Bin-Private':'false'},
-        body: JSON.stringify(DADOS_INICIAIS)
-      });
-      const j = await r.json();
-      BIN_ID = j.metadata.id;
-      localStorage.setItem('honorariosBinId', BIN_ID);
-      db = DADOS_INICIAIS;
-    } else {
-      const r = await fetch(`${BIN_URL}/${BIN_ID}/latest`, {
-        headers:{'X-Master-Key':API_KEY}
-      });
-      const j = await r.json();
-      db = j.record;
-      // Garantir que dados iniciais existem
-      if(!db.convenios) db = DADOS_INICIAIS;
-    }
-    setSyncStatus('ok','Sincronizado ✓');
-    afterLoad();
-  } catch(e){
-    setSyncStatus('err','Sem conexão — dados locais');
-    try{ db = JSON.parse(localStorage.getItem('honorariosDB')) || DADOS_INICIAIS; }catch(ex){ db = DADOS_INICIAIS; }
-    afterLoad();
-  }
-}
-
-async function saveDB(){
-  if(saving) return;
-  saving = true;
-  setSyncStatus('loading','Salvando...');
-  localStorage.setItem('honorariosDB', JSON.stringify(db));
-  try {
-    await fetch(`${BIN_URL}/${BIN_ID}`, {
-      method:'PUT',
-      headers:{'Content-Type':'application/json','X-Master-Key':API_KEY},
-      body: JSON.stringify(db)
-    });
-    setSyncStatus('ok','Sincronizado ✓');
-  } catch(e){
-    setSyncStatus('err','Salvo localmente (sem internet)');
-  }
-  saving = false;
-}
-
-function setSyncStatus(state, msg){
-  const dot = document.getElementById('syncDot');
-  const txt = document.getElementById('syncMsg');
-  if(!dot) return;
-  dot.className = 'sync-dot ' + state;
-  txt.textContent = msg;
-}
-
-function afterLoad(){
-  renderSelConvenio();
-  renderCadastro();
-  renderHistorico();
-}
 
 // ─── NAVEGAÇÃO ────────────────────────────────────────────
 function goPage(p){
   document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(el=>el.classList.remove('active'));
   document.getElementById('page-'+p).classList.add('active');
-  const idx = {calc:0,result:1,historico:2,cadastro:3}[p]||0;
-  document.querySelectorAll('.nav-btn')[idx].classList.add('active');
+  document.getElementById('nav-'+p).classList.add('active');
   if(p==='cadastro'||p==='historico') loadDB();
 }
 
-// ─── HISTÓRICO ────────────────────────────────────────────
-function renderHistorico(){
-  const el = document.getElementById('historicoList');
-  if(!db.historico||!db.historico.length){
-    el.innerHTML='<div class="empty"><div class="empty-icon">📋</div><p>Nenhuma cirurgia salva ainda.</p></div>';
-    return;
+// ─── JSONBIN ──────────────────────────────────────────────
+async function loadDB(){
+  setSyncStatus('loading','Conectando...');
+  try{
+    if(!BIN_ID){
+      const r=await fetch(BIN_URL,{method:'POST',headers:{'Content-Type':'application/json','X-Master-Key':API_KEY,'X-Bin-Name':'honorarios-db','X-Bin-Private':'false'},body:JSON.stringify(DADOS_INICIAIS)});
+      const j=await r.json();
+      BIN_ID=j.metadata.id;
+      localStorage.setItem('honorariosBinId',BIN_ID);
+      db=JSON.parse(JSON.stringify(DADOS_INICIAIS));
+    } else {
+      const r=await fetch(`${BIN_URL}/${BIN_ID}/latest`,{headers:{'X-Master-Key':API_KEY}});
+      const j=await r.json();
+      db=j.record;
+      if(!db.convenios) db=JSON.parse(JSON.stringify(DADOS_INICIAIS));
+      if(!db.historico) db.historico=[];
+    }
+    setSyncStatus('ok','Sincronizado ✓');
+  } catch(e){
+    setSyncStatus('err','Offline — dados locais');
+    try{db=JSON.parse(localStorage.getItem('honorariosDB'))||JSON.parse(JSON.stringify(DADOS_INICIAIS));}catch(ex){db=JSON.parse(JSON.stringify(DADOS_INICIAIS));}
   }
-  el.innerHTML='';
-  db.historico.forEach(h=>{
-    const card=document.createElement('div'); card.className='card';
-    card.style.cursor='pointer';
-    card.innerHTML=`
-      <div style="display:flex;justify-content:space-between;align-items:flex-start">
-        <div>
-          <div style="font-weight:700;color:var(--navy);font-size:0.95rem">${h.paciente}</div>
-          <div style="font-size:0.78rem;color:var(--gray-400);margin-top:2px">${h.data?fmtData(h.data):''} ${h.convenio?'· '+h.convenio:''}</div>
-        </div>
-        <div style="text-align:right">
-          <div style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--teal)">${fmt(h.totalCirurgiao)}</div>
-          <div style="font-size:0.72rem;color:var(--gray-400)">cirurgião</div>
-        </div>
-      </div>
-      <div style="display:flex;gap:8px;margin-top:12px">
-        <button class="btn-icon" onclick="verHistorico(${h.id})">👁 Ver</button>
-        <button class="btn-icon" onclick="imprimirHistorico(${h.id})">⬇ PDF</button>
-        <button class="btn-danger" onclick="excluirHistorico(${h.id})" style="margin-left:auto">🗑</button>
-      </div>`;
-    el.appendChild(card);
-  });
-}
-
-function verHistorico(id){
-  const h = db.historico.find(x=>x.id===id);
-  if(!h) return;
-  document.getElementById('resultadoContent').innerHTML = h.html +
-    `<div class="action-row no-print">
-      <button class="btn-pdf" onclick="imprimirHistorico(${h.id})">⬇ PDF</button>
-      <button class="btn-nova" onclick="goPage('historico')">← Voltar</button>
-    </div>`;
-  goPage('result');
-}
-
-function imprimirHistorico(id){
-  const h = db.historico.find(x=>x.id===id);
-  if(!h) return;
-  document.getElementById('resultadoContent').innerHTML = h.html;
-  goPage('result');
-  setTimeout(()=>window.print(), 300);
-}
-
-async function excluirHistorico(id){
-  if(!confirm('Excluir este registro?')) return;
-  db.historico = db.historico.filter(x=>x.id!==id);
-  await saveDB();
+  renderSelConvenio();
+  renderCadastro();
   renderHistorico();
-  showToast('Registro excluído');
+}
+
+async function saveDB(){
+  if(saving)return;
+  saving=true;
+  setSyncStatus('loading','Salvando...');
+  localStorage.setItem('honorariosDB',JSON.stringify(db));
+  try{
+    await fetch(`${BIN_URL}/${BIN_ID}`,{method:'PUT',headers:{'Content-Type':'application/json','X-Master-Key':API_KEY},body:JSON.stringify(db)});
+    setSyncStatus('ok','Sincronizado ✓');
+  }catch(e){setSyncStatus('err','Salvo localmente');}
+  saving=false;
+}
+
+function setSyncStatus(s,m){
+  const d=document.getElementById('syncDot');
+  const t=document.getElementById('syncMsg');
+  if(!d)return;
+  d.className='sync-dot '+s;
+  t.textContent=m;
 }
 
 // ─── INIT ─────────────────────────────────────────────────
-document.getElementById('dataCirurgia').value = new Date().toISOString().split('T')[0];
+document.getElementById('dataCirurgia').value=new Date().toISOString().split('T')[0];
 loadDB();
 
 // ─── TIPO ─────────────────────────────────────────────────
-function setTipo(t, btn){
-  tipo = t;
+function setTipo(t,btn){
+  tipo=t;
   document.querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
 }
 
 // ─── CADASTRO ─────────────────────────────────────────────
 async function salvarConvenio(){
-  const nome = document.getElementById('nomeConvenio').value.trim();
-  if(!nome){ showToast('Digite o nome do convênio'); return; }
-  if(db.convenios.find(c=>c.nome.toLowerCase()===nome.toLowerCase())){ showToast('Convênio já cadastrado'); return; }
-  db.convenios.push({id: Date.now(), nome});
-  await saveDB();
-  renderCadastro(); renderSelConvenio();
+  const nome=document.getElementById('nomeConvenio').value.trim();
+  if(!nome){showToast('Digite o nome do convênio');return;}
+  if(db.convenios.find(c=>c.nome.toLowerCase()===nome.toLowerCase())){showToast('Convênio já cadastrado');return;}
+  db.convenios.push({id:Date.now(),nome});
+  await saveDB(); renderCadastro(); renderSelConvenio();
   document.getElementById('nomeConvenio').value='';
   showToast('Convênio salvo! ✓');
 }
 
 async function salvarProc(){
-  const convId = parseInt(document.getElementById('selConvProc').value);
-  const codigo = document.getElementById('codProc').value.trim();
-  const nome   = document.getElementById('nomeProc').value.trim();
-  const valor  = parseFloat(document.getElementById('valProc').value);
-  if(!convId){ showToast('Selecione o convênio'); return; }
-  if(!nome){ showToast('Digite o nome do procedimento'); return; }
-  if(!valor||valor<=0){ showToast('Digite o valor'); return; }
-  db.procedimentos.push({id:Date.now(), convId, codigo, nome, valor});
-  await saveDB();
-  renderCadastro();
+  const convId=parseInt(document.getElementById('selConvProc').value);
+  const codigo=document.getElementById('codProc').value.trim();
+  const nome=document.getElementById('nomeProc').value.trim();
+  const valor=parseFloat(document.getElementById('valProc').value);
+  if(!convId){showToast('Selecione o convênio');return;}
+  if(!nome){showToast('Digite o nome');return;}
+  if(!valor||valor<=0){showToast('Digite o valor');return;}
+  db.procedimentos.push({id:Date.now(),convId,codigo,nome,valor});
+  await saveDB(); renderCadastro();
   document.getElementById('codProc').value='';
   document.getElementById('nomeProc').value='';
   document.getElementById('valProc').value='';
@@ -445,51 +354,69 @@ async function salvarProc(){
 }
 
 async function excluirConvenio(id){
-  if(!confirm('Excluir convênio e todos os procedimentos vinculados?')) return;
-  db.convenios = db.convenios.filter(c=>c.id!==id);
-  db.procedimentos = db.procedimentos.filter(p=>p.convId!==id);
-  await saveDB();
-  renderCadastro(); renderSelConvenio();
+  if(!confirm('Excluir convênio e todos os procedimentos vinculados?'))return;
+  db.convenios=db.convenios.filter(c=>c.id!==id);
+  db.procedimentos=db.procedimentos.filter(p=>p.convId!==id);
+  await saveDB(); renderCadastro(); renderSelConvenio();
   showToast('Convênio excluído');
 }
 
 async function excluirProc(id){
-  db.procedimentos = db.procedimentos.filter(p=>p.id!==id);
-  await saveDB();
-  renderCadastro();
+  db.procedimentos=db.procedimentos.filter(p=>p.id!==id);
+  await saveDB(); renderCadastro();
   showToast('Procedimento excluído');
 }
 
-function renderCadastro(){
-  const selCP = document.getElementById('selConvProc');
-  const cur = selCP.value;
-  selCP.innerHTML = '<option value="">Selecione o convênio...</option>';
-  db.convenios.forEach(c=>{ const o=document.createElement('option'); o.value=c.id; o.textContent=c.nome; selCP.appendChild(o); });
-  if(cur) selCP.value=cur;
+function abrirEdicao(id){
+  const p=db.procedimentos.find(x=>x.id===id);
+  if(!p)return;
+  document.getElementById('editProcId').value=p.id;
+  document.getElementById('editCodProc').value=p.codigo||'';
+  document.getElementById('editNomeProc').value=p.nome;
+  document.getElementById('editValProc').value=p.valor;
+  document.getElementById('modalEdicao').style.display='block';
+}
 
-  const el = document.getElementById('cadastroList');
-  if(!db.convenios.length){ el.innerHTML='<div class="empty"><div class="empty-icon">🏥</div><p>Nenhum convênio cadastrado ainda.</p></div>'; return; }
+async function salvarEdicao(){
+  const id=parseInt(document.getElementById('editProcId').value);
+  const codigo=document.getElementById('editCodProc').value.trim();
+  const nome=document.getElementById('editNomeProc').value.trim();
+  const valor=parseFloat(document.getElementById('editValProc').value);
+  if(!nome){showToast('Digite o nome');return;}
+  if(!valor||valor<=0){showToast('Digite o valor');return;}
+  const idx=db.procedimentos.findIndex(x=>x.id===id);
+  if(idx===-1)return;
+  db.procedimentos[idx]={...db.procedimentos[idx],codigo,nome,valor};
+  await saveDB();
+  document.getElementById('modalEdicao').style.display='none';
+  renderCadastro();
+  showToast('Atualizado! ✓');
+}
+
+function renderCadastro(){
+  const sel=document.getElementById('selConvProc');
+  const cur=sel.value;
+  sel.innerHTML='<option value="">Selecione...</option>';
+  db.convenios.forEach(c=>{const o=document.createElement('option');o.value=c.id;o.textContent=c.nome;sel.appendChild(o);});
+  if(cur)sel.value=cur;
+  const el=document.getElementById('cadastroList');
+  if(!db.convenios.length){el.innerHTML='<div class="empty"><div class="empty-icon">🏥</div><p>Nenhum convênio cadastrado.</p></div>';return;}
   el.innerHTML='';
   db.convenios.forEach(c=>{
-    const procs = db.procedimentos.filter(p=>p.convId===c.id);
-    const sec = document.createElement('div'); sec.style.marginBottom='16px';
+    const procs=db.procedimentos.filter(p=>p.convId===c.id);
+    const sec=document.createElement('div');sec.style.marginBottom='16px';
     sec.innerHTML=`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
       <span style="font-weight:700;color:var(--navy);font-size:0.92rem">${c.nome}</span>
-      <button class="btn-danger" onclick="excluirConvenio(${c.id})">🗑</button>
-    </div>`;
-    if(!procs.length){
-      sec.innerHTML+=`<div style="font-size:0.82rem;color:var(--gray-400);padding:8px 0">Nenhum procedimento cadastrado.</div>`;
-    } else {
-      const ul=document.createElement('div'); ul.className='item-list';
+      <button class="btn-danger" onclick="excluirConvenio(${c.id})">🗑</button></div>`;
+    if(!procs.length){sec.innerHTML+=`<div style="font-size:0.82rem;color:var(--gray-400);padding:8px 0">Nenhum procedimento.</div>`;}
+    else{
+      const ul=document.createElement('div');ul.className='item-list';
       procs.forEach(p=>{
-        const row=document.createElement('div'); row.className='item-row';
-        row.innerHTML=`<div class="item-info">
-          <div class="item-name">${p.nome}</div>
-          <div class="item-sub">${p.codigo||'sem código'}</div>
-        </div>
-        <div class="item-valor">${fmt(p.valor)}</div>
-        <button class="btn-icon" onclick="abrirEdicao(${p.id})" title="Editar">✏️</button>
-        <button class="btn-danger" onclick="excluirProc(${p.id})">✕</button>`;
+        const row=document.createElement('div');row.className='item-row';
+        row.innerHTML=`<div class="item-info"><div class="item-name">${p.nome}</div><div class="item-sub">${p.codigo||'sem código'}</div></div>
+          <div class="item-valor">${fmt(p.valor)}</div>
+          <button class="btn-icon" onclick="abrirEdicao(${p.id})">✏️</button>
+          <button class="btn-danger" onclick="excluirProc(${p.id})">✕</button>`;
         ul.appendChild(row);
       });
       sec.appendChild(ul);
@@ -499,76 +426,68 @@ function renderCadastro(){
 }
 
 function renderSelConvenio(){
-  const sel = document.getElementById('selConvenio');
-  const cur = sel.value;
-  sel.innerHTML = '<option value="">Selecione...</option>';
-  db.convenios.forEach(c=>{ const o=document.createElement('option'); o.value=c.id; o.textContent=c.nome; sel.appendChild(o); });
-  if(cur) sel.value=cur;
+  const sel=document.getElementById('selConvenio');
+  const cur=sel.value;
+  sel.innerHTML='<option value="">Selecione...</option>';
+  db.convenios.forEach(c=>{const o=document.createElement('option');o.value=c.id;o.textContent=c.nome;sel.appendChild(o);});
+  if(cur)sel.value=cur;
 }
 
-function onConvenioChange(){ procLancados=[]; renderProcLancados(); }
+function onConvenioChange(){procLancados=[];renderProcLancados();}
 
 // ─── LANÇAMENTO ───────────────────────────────────────────
 function abrirSelProc(){
-  const convId = parseInt(document.getElementById('selConvenio').value);
-  if(!convId){ showToast('Selecione o convênio primeiro'); return; }
-  const procs = db.procedimentos.filter(p=>p.convId===convId);
-  const modal = document.getElementById('modalProcList');
-  if(!procs.length){
-    modal.innerHTML='<div class="empty"><div class="empty-icon">📋</div><p>Nenhum procedimento cadastrado para este convênio.</p></div>';
-  } else {
+  const convId=parseInt(document.getElementById('selConvenio').value);
+  if(!convId){showToast('Selecione o convênio primeiro');return;}
+  const procs=db.procedimentos.filter(p=>p.convId===convId);
+  const modal=document.getElementById('modalProcList');
+  if(!procs.length){modal.innerHTML='<div class="empty"><div class="empty-icon">📋</div><p>Nenhum procedimento para este convênio.</p></div>';}
+  else{
     modal.innerHTML='';
     procs.forEach(p=>{
-      const jaAdicionado = procLancados.find(l=>l.id===p.id);
-      const row=document.createElement('div'); row.className='item-row'; row.style.marginBottom='6px';
-      row.style.opacity=jaAdicionado?'0.5':'1';
-      row.innerHTML=`<div class="item-info">
-        <div class="item-name">${p.nome}</div>
-        <div class="item-sub">${p.codigo||''}</div>
-      </div>
-      <div class="item-valor">${fmt(p.valor)}</div>
-      ${jaAdicionado
-        ?'<span style="font-size:0.75rem;color:var(--teal);font-weight:600">✓</span>'
-        :`<button class="btn-icon" onclick="addProcLancado(${p.id})">+ Add</button>`}`;
+      const ja=procLancados.find(l=>l.id===p.id);
+      const row=document.createElement('div');row.className='item-row';row.style.marginBottom='6px';
+      row.style.opacity=ja?'0.5':'1';
+      row.innerHTML=`<div class="item-info"><div class="item-name">${p.nome}</div><div class="item-sub">${p.codigo||''}</div></div>
+        <div class="item-valor">${fmt(p.valor)}</div>
+        ${ja?'<span style="font-size:0.75rem;color:var(--teal);font-weight:600">✓</span>':`<button class="btn-icon" onclick="addProcLancado(${p.id})">+ Add</button>`}`;
       modal.appendChild(row);
     });
   }
   document.getElementById('modalOverlay').style.display='block';
 }
 
-function fecharModal(e){ if(e.target===document.getElementById('modalOverlay')) document.getElementById('modalOverlay').style.display='none'; }
+function fecharModal(e){if(e.target===document.getElementById('modalOverlay'))document.getElementById('modalOverlay').style.display='none';}
 
 function addProcLancado(procId){
-  const p = db.procedimentos.find(x=>x.id===procId);
-  if(!p) return;
-  procLancados.push({id:p.id, codigo:p.codigo, nome:p.nome, valor:p.valor, bilateral:false, via:'nasal'});
+  const p=db.procedimentos.find(x=>x.id===procId);
+  if(!p)return;
+  procLancados.push({id:p.id,codigo:p.codigo,nome:p.nome,valor:p.valor,bilateral:false,via:'nasal'});
   document.getElementById('modalOverlay').style.display='none';
   renderProcLancados();
 }
 
-function removerProcLancado(idx){ procLancados.splice(idx,1); renderProcLancados(); }
-function toggleBilateral(idx){ procLancados[idx].bilateral=!procLancados[idx].bilateral; renderProcLancados(); }
-function setVia(idx,via){ procLancados[idx].via=via; renderProcLancados(); }
+function removerProcLancado(idx){procLancados.splice(idx,1);renderProcLancados();}
+function toggleBilateral(idx){procLancados[idx].bilateral=!procLancados[idx].bilateral;renderProcLancados();}
+function setVia(idx,via){procLancados[idx].via=via;renderProcLancados();}
 
 function renderProcLancados(){
-  const el = document.getElementById('procLancList');
-  if(!procLancados.length){ el.innerHTML=''; return; }
+  const el=document.getElementById('procLancList');
+  if(!procLancados.length){el.innerHTML='';return;}
   el.innerHTML='';
   procLancados.forEach((p,i)=>{
-    const div=document.createElement('div'); div.className='proc-card';
+    const div=document.createElement('div');div.className='proc-card';
     div.innerHTML=`
       <div class="proc-card-header">
-        <div style="flex:1">
-          <div class="proc-card-name">${p.nome}</div>
-          <div class="proc-card-valor">${p.codigo?p.codigo+' · ':''}${fmt(p.valor)}</div>
-        </div>
+        <div style="flex:1"><div class="proc-card-name">${p.nome}</div>
+        <div class="proc-card-valor">${p.codigo?p.codigo+' · ':''}${fmt(p.valor)}</div></div>
         <button class="btn-danger" onclick="removerProcLancado(${i})">✕</button>
       </div>
       <div class="proc-card-options">
         <span class="proc-tag-label">Via:</span>
-        <button class="proc-tag ${p.via==='nasal'?'active-nasal':''}" onclick="setVia(${i},'nasal')">🔵 Nasal/Sinusal</button>
+        <button class="proc-tag ${p.via==='nasal'?'active-nasal':''}" onclick="setVia(${i},'nasal')">🔵 Nasal</button>
         <button class="proc-tag ${p.via==='oro'?'active-oro':''}" onclick="setVia(${i},'oro')">🟠 Orofaringe</button>
-        <span class="proc-tag-label" style="margin-left:4px">Bilateral:</span>
+        <span class="proc-tag-label" style="margin-left:4px">Lado:</span>
         <button class="proc-tag ${p.bilateral?'active-bilateral':''}" onclick="toggleBilateral(${i})">${p.bilateral?'✓ Bilateral':'Unilateral'}</button>
       </div>`;
     el.appendChild(div);
@@ -576,41 +495,38 @@ function renderProcLancados(){
 }
 
 // ─── CÁLCULO ──────────────────────────────────────────────
-function calcular(){
-  if(!procLancados.length){ showToast('Adicione pelo menos um procedimento'); return; }
-  const multQuarto = tipo==='quarto'?2:1;
-  let expandidos=[];
+async function calcular(){
+  if(!procLancados.length){showToast('Adicione pelo menos um procedimento');return;}
+  const mq=tipo==='quarto'?2:1;
+  let exp=[];
   procLancados.forEach(p=>{
     if(p.bilateral){
-      expandidos.push({...p, lado:'D', valorBase:p.valor*multQuarto});
-      expandidos.push({...p, lado:'E', valorBase:p.valor*multQuarto});
+      exp.push({...p,lado:'D',valorBase:p.valor*mq});
+      exp.push({...p,lado:'E',valorBase:p.valor*mq});
     } else {
-      expandidos.push({...p, lado:'', valorBase:p.valor*multQuarto});
+      exp.push({...p,lado:'',valorBase:p.valor*mq});
     }
   });
-  expandidos.sort((a,b)=>b.valorBase-a.valorBase);
-  let viaUsada={};
-  let resultados=[];
-  let primeiroGeral=true;
-  expandidos.forEach(p=>{
+  exp.sort((a,b)=>b.valorBase-a.valorBase);
+  let viaUsada={};let res=[];let primeiro=true;
+  exp.forEach(p=>{
     let pct;
-    if(primeiroGeral){ pct=100; primeiroGeral=false; viaUsada[p.via]=true; }
-    else if(!viaUsada[p.via]){ pct=70; viaUsada[p.via]=true; }
-    else{ pct=50; }
-    resultados.push({...p, pct, valorFinal:p.valorBase*(pct/100)});
+    if(primeiro){pct=100;primeiro=false;viaUsada[p.via]=true;}
+    else if(!viaUsada[p.via]){pct=70;viaUsada[p.via]=true;}
+    else{pct=50;}
+    res.push({...p,pct,valorFinal:p.valorBase*(pct/100)});
   });
-  const totalCirurgiao=resultados.reduce((s,r)=>s+r.valorFinal,0);
-  const auxiliar=totalCirurgiao*0.30;
-  const instrumentador=totalCirurgiao*0.10;
-  const totalAto=totalCirurgiao+auxiliar+instrumentador;
+  const totalCir=res.reduce((s,r)=>s+r.valorFinal,0);
+  const aux=totalCir*0.30;
+  const inst=totalCir*0.10;
+  const total=totalCir+aux+inst;
 
   const nome=document.getElementById('nomePaciente').value;
   const data=document.getElementById('dataCirurgia').value;
   const convId=parseInt(document.getElementById('selConvenio').value);
   const conv=db.convenios.find(c=>c.id===convId);
 
-  // Montar HTML do resultado
-  const htmlResultado = `<div class="card">
+  const htmlCard=`<div class="card">
     <div style="margin-bottom:14px">
       ${nome?`<div class="result-meta-line"><strong>Paciente:</strong> ${nome}</div>`:''}
       ${data?`<div class="result-meta-line"><strong>Data:</strong> ${fmtData(data)}</div>`:''}
@@ -618,109 +534,127 @@ function calcular(){
     </div>
     <div class="card-title">Detalhamento</div>
     <table class="result-table">
-      <thead><tr><th>Procedimento</th><th style="text-align:right">Cirurgião</th><th style="text-align:right">Auxiliar (30%)</th></tr></thead>
+      <thead><tr><th>Procedimento</th><th style="text-align:right">Cirurgião</th><th style="text-align:right">Auxiliar 30%</th></tr></thead>
       <tbody>
-        ${resultados.map(r=>{
-          const ladoStr=r.lado?` (${r.lado})`:'';
-          const auxLinha = r.valorFinal * 0.30;
-          return `<tr>
-            <td>${r.nome}${ladoStr}<span class="pct-note">${r.pct}%${multQuarto===2?' Q×2':''}</span></td>
-            <td>${fmt(r.valorFinal)}</td>
-            <td style="color:var(--blue)">${fmt(auxLinha)}</td>
-          </tr>`;
-        }).join('')}
+        ${res.map(r=>`<tr>
+          <td>${r.nome}${r.lado?' ('+r.lado+')':''}<span class="pct-note">${r.pct}%${mq===2?' Q×2':''}</span></td>
+          <td>${fmt(r.valorFinal)}</td>
+          <td style="color:var(--blue)">${fmt(r.valorFinal*0.30)}</td>
+        </tr>`).join('')}
       </tbody>
-      <tfoot>
-        <tr>
-          <td>Total</td>
-          <td>${fmt(totalCirurgiao)}</td>
-          <td style="color:var(--blue)">${fmt(auxiliar)}</td>
-        </tr>
-      </tfoot>
+      <tfoot><tr><td>Total</td><td>${fmt(totalCir)}</td><td style="color:var(--blue)">${fmt(aux)}</td></tr></tfoot>
     </table>
     <div class="func-grid">
-      <div class="func-card c1"><div class="func-label">Cirurgião</div><div class="func-valor">${fmt(totalCirurgiao)}</div><div class="func-pct">100%</div></div>
-      <div class="func-card c2"><div class="func-label">Auxiliar</div><div class="func-valor">${fmt(auxiliar)}</div><div class="func-pct">30%</div></div>
-      <div class="func-card c3"><div class="func-label">Instrumentador</div><div class="func-valor">${fmt(instrumentador)}</div><div class="func-pct">10%</div></div>
+      <div class="func-card c1"><div class="func-label">Cirurgião</div><div class="func-valor">${fmt(totalCir)}</div><div class="func-pct">100%</div></div>
+      <div class="func-card c2"><div class="func-label">Auxiliar</div><div class="func-valor">${fmt(aux)}</div><div class="func-pct">30%</div></div>
+      <div class="func-card c3"><div class="func-label">Instrumentador</div><div class="func-valor">${fmt(inst)}</div><div class="func-pct">10%</div></div>
     </div>
     <div class="total-bar">
       <span class="total-bar-label">Total do ato cirúrgico</span>
-      <span class="total-bar-valor">${fmt(totalAto)}</span>
+      <span class="total-bar-valor">${fmt(total)}</span>
     </div>
   </div>`;
 
-  // Salvar no histórico
-  const historico = {
-    id: Date.now(),
-    data: data,
-    paciente: nome||'(sem nome)',
-    convenio: conv?conv.nome:'',
-    totalCirurgiao,
-    totalAto,
-    html: htmlResultado
-  };
-  if(!db.historico) db.historico=[];
-  db.historico.unshift(historico);
-  if(db.historico.length > 50) db.historico = db.historico.slice(0,50); // máx 50
+  // Salvar histórico
+  if(!db.historico)db.historico=[];
+  const hid=Date.now();
+  db.historico.unshift({id:hid,data,paciente:nome||'(sem nome)',convenio:conv?conv.nome:'',totalCir,total,html:htmlCard});
+  if(db.historico.length>50)db.historico=db.historico.slice(0,50);
   await saveDB();
 
-  let html = htmlResultado;
-  html += `<div class="action-row no-print">
-    <button class="btn-pdf" onclick="window.print()">⬇ PDF</button>
-    <button class="btn-nova" onclick="editarCirurgia()">✏️ Editar</button>
-    <button class="btn-nova" onclick="novaCirurgia()" style="border-color:var(--red);color:var(--red)">🗑 Apagar</button>
-  </div>`;
-
-  document.getElementById('resultadoContent').innerHTML=html;
+  mostrarResultado(htmlCard, hid);
   goPage('result');
 }
 
-function editarCirurgia(){
-  // Volta para Nova Cirurgia mantendo todos os dados preenchidos
-  goPage('calc');
+function mostrarResultado(htmlCard, hid){
+  document.getElementById('resultadoContent').innerHTML = htmlCard +
+    `<div class="action-row no-print">
+      <button class="btn-pdf" onclick="window.print()">⬇ PDF</button>
+      <button class="btn-sec" onclick="goPage('calc')">✏️ Editar</button>
+      <button class="btn-del" onclick="excluirResultado(${hid})">🗑 Apagar</button>
+    </div>`;
 }
 
+async function excluirResultado(hid){
+  if(!confirm('Apagar este resultado do histórico?'))return;
+  db.historico=db.historico.filter(h=>h.id!==hid);
+  await saveDB();
+  novaCirurgia();
+}
+
+// ─── HISTÓRICO ────────────────────────────────────────────
+function renderHistorico(){
+  const el=document.getElementById('historicoList');
+  if(!db.historico||!db.historico.length){
+    el.innerHTML='<div class="empty"><div class="empty-icon">📋</div><p>Nenhuma cirurgia salva ainda.</p></div>';
+    return;
+  }
+  el.innerHTML='';
+  db.historico.forEach(h=>{
+    const card=document.createElement('div');card.className='card';
+    card.innerHTML=`
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px">
+        <div>
+          <div style="font-weight:700;color:var(--navy);font-size:0.95rem">${h.paciente}</div>
+          <div style="font-size:0.78rem;color:var(--gray-400);margin-top:2px">${h.data?fmtData(h.data):''} ${h.convenio?'· '+h.convenio:''}</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--teal)">${fmt(h.totalCir)}</div>
+          <div style="font-size:0.72rem;color:var(--gray-400)">cirurgião</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn-icon" onclick="verHistorico(${h.id})">👁 Ver</button>
+        <button class="btn-icon" onclick="pdfHistorico(${h.id})">⬇ PDF</button>
+        <button class="btn-danger" onclick="excluirHistorico(${h.id})" style="margin-left:auto">🗑</button>
+      </div>`;
+    el.appendChild(card);
+  });
+}
+
+function verHistorico(id){
+  const h=db.historico.find(x=>x.id===id);
+  if(!h)return;
+  document.getElementById('resultadoContent').innerHTML=h.html+
+    `<div class="action-row no-print">
+      <button class="btn-pdf" onclick="pdfHistorico(${h.id})">⬇ PDF</button>
+      <button class="btn-sec" onclick="goPage('historico')">← Voltar</button>
+    </div>`;
+  goPage('result');
+}
+
+function pdfHistorico(id){
+  const h=db.historico.find(x=>x.id===id);
+  if(!h)return;
+  document.getElementById('resultadoContent').innerHTML=h.html;
+  goPage('result');
+  setTimeout(()=>window.print(),300);
+}
+
+async function excluirHistorico(id){
+  if(!confirm('Excluir este registro?'))return;
+  db.historico=db.historico.filter(x=>x.id!==id);
+  await saveDB();
+  renderHistorico();
+  showToast('Registro excluído');
+}
+
+// ─── NOVA CIRURGIA ────────────────────────────────────────
 function novaCirurgia(){
-  procLancados=[];
-  renderProcLancados();
+  procLancados=[];renderProcLancados();
   document.getElementById('nomePaciente').value='';
   document.getElementById('dataCirurgia').value=new Date().toISOString().split('T')[0];
   document.getElementById('selConvenio').value='';
   document.querySelectorAll('.toggle-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
   tipo='enfermaria';
+  document.getElementById('resultadoContent').innerHTML='<div class="empty"><div class="empty-icon">📋</div><p>Nenhum cálculo realizado ainda.</p></div>';
   goPage('calc');
 }
 
-// ─── EDIÇÃO ───────────────────────────────────────────────
-function abrirEdicao(id){
-  const p = db.procedimentos.find(x=>x.id===id);
-  if(!p) return;
-  document.getElementById('editProcId').value = p.id;
-  document.getElementById('editCodProc').value = p.codigo||'';
-  document.getElementById('editNomeProc').value = p.nome;
-  document.getElementById('editValProc').value = p.valor;
-  document.getElementById('modalEdicao').style.display='block';
-}
-
-async function salvarEdicao(){
-  const id = parseInt(document.getElementById('editProcId').value);
-  const codigo = document.getElementById('editCodProc').value.trim();
-  const nome   = document.getElementById('editNomeProc').value.trim();
-  const valor  = parseFloat(document.getElementById('editValProc').value);
-  if(!nome){ showToast('Digite o nome do procedimento'); return; }
-  if(!valor||valor<=0){ showToast('Digite o valor'); return; }
-  const idx = db.procedimentos.findIndex(x=>x.id===id);
-  if(idx===-1) return;
-  db.procedimentos[idx] = {...db.procedimentos[idx], codigo, nome, valor};
-  await saveDB();
-  document.getElementById('modalEdicao').style.display='none';
-  renderCadastro();
-  showToast('Procedimento atualizado! ✓');
-}
-
-function fmt(v){ return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'}); }
-function fmtData(d){ if(!d)return''; const[y,m,day]=d.split('-'); return`${day}/${m}/${y}`; }
-function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2500); }
+// ─── UTILS ────────────────────────────────────────────────
+function fmt(v){return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});}
+function fmtData(d){if(!d)return'';const[y,m,day]=d.split('-');return`${day}/${m}/${y}`;}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 </script>
 </body>
 </html>
