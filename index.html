@@ -315,7 +315,15 @@ async function saveDB(){
   setSyncStatus('loading','Salvando...');
   localStorage.setItem('honorariosDB',JSON.stringify(db));
   try{
-    await fetch(`${BIN_URL}/${BIN_ID}`,{method:'PUT',headers:{'Content-Type':'application/json','X-Master-Key':API_KEY},body:JSON.stringify(db)});
+    // Se não tem BIN_ID ainda, cria agora
+    if(!BIN_ID){
+      const r=await fetch(BIN_URL,{method:'POST',headers:{'Content-Type':'application/json','X-Master-Key':API_KEY,'X-Bin-Name':'honorarios-db','X-Bin-Private':'false'},body:JSON.stringify(db)});
+      const j=await r.json();
+      BIN_ID=j.metadata.id;
+      localStorage.setItem('honorariosBinId',BIN_ID);
+    } else {
+      await fetch(`${BIN_URL}/${BIN_ID}`,{method:'PUT',headers:{'Content-Type':'application/json','X-Master-Key':API_KEY},body:JSON.stringify(db)});
+    }
     setSyncStatus('ok','Sincronizado ✓');
   }catch(e){setSyncStatus('err','Salvo localmente');}
   saving=false;
@@ -583,7 +591,8 @@ async function calcular(){
   const hid=Date.now();
   db.historico.unshift({id:hid,data,paciente:nome||'(sem nome)',convenio:conv?conv.nome:'',totalCir,total,html:htmlCard});
   if(db.historico.length>50)db.historico=db.historico.slice(0,50);
-  await saveDB();
+  renderHistorico(); // Atualiza imediatamente na memória
+  await saveDB();    // Depois salva na nuvem
 
   mostrarResultado(htmlCard, hid);
   goPage('result');
@@ -608,12 +617,14 @@ async function excluirResultado(hid){
 // ─── HISTÓRICO ────────────────────────────────────────────
 function renderHistorico(){
   const el=document.getElementById('historicoList');
-  if(!db.historico||!db.historico.length){
-    el.innerHTML='<div class="empty"><div class="empty-icon">📋</div><p>Nenhuma cirurgia salva ainda.</p></div>';
+  if(!el) return;
+  const hist = db.historico || [];
+  if(!hist.length){
+    el.innerHTML='<div class="empty"><div class="empty-icon">📋</div><p>Nenhuma cirurgia salva ainda.<br>Calcule uma cirurgia para ela aparecer aqui.</p></div>';
     return;
   }
   el.innerHTML='';
-  db.historico.forEach(h=>{
+  hist.forEach(h=>{
     const card=document.createElement('div');card.className='card';
     card.innerHTML=`
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px">
