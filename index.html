@@ -55,6 +55,7 @@ body{font-family:'Inter',sans-serif;background:var(--gray-100);color:var(--gray-
 .proc-tag{font-size:0.75rem;font-weight:600;padding:4px 10px;border-radius:20px;border:1.5px solid var(--gray-200);background:var(--white);color:var(--gray-400);cursor:pointer;transition:all 0.15s;white-space:nowrap}
 .proc-tag.active-nasal{border-color:var(--teal);background:var(--teal-light);color:var(--teal)}
 .proc-tag.active-oro{border-color:var(--blue);background:var(--blue-light);color:var(--blue)}
+.proc-tag.active-oto{border-color:#7D3C98;background:#F5EEF8;color:#7D3C98}
 .proc-tag.active-bilateral{border-color:var(--orange);background:var(--orange-light);color:var(--orange)}
 .proc-tag-label{font-size:0.72rem;color:var(--gray-400);align-self:center}
 .result-meta-line{font-size:0.84rem;color:var(--gray-600);margin-bottom:2px}
@@ -483,6 +484,7 @@ function renderProcLancados(){
         <span class="proc-tag-label">Via:</span>
         <button class="proc-tag ${p.via==='nasal'?'active-nasal':''}" onclick="setVia(${i},'nasal')">🔵 Nasal</button>
         <button class="proc-tag ${p.via==='oro'?'active-oro':''}" onclick="setVia(${i},'oro')">🟠 Orofaringe</button>
+        <button class="proc-tag ${p.via==='oto'?'active-oto':''}" onclick="setVia(${i},'oto')">🟣 Otológica</button>
         <span class="proc-tag-label" style="margin-left:4px">Lado:</span>
         <button class="proc-tag ${p.bilateral?'active-bilateral':''}" onclick="toggleBilateral(${i})">${p.bilateral?'✓ Bilateral':'Unilateral'}</button>
       </div>`;
@@ -504,12 +506,17 @@ function calcular(){
     }
   });
   exp.sort((a,b)=>b.valorBase-a.valorBase);
-  let viaUsada={};let res=[];let primeiro=true;
+  let viaUsada={};let res=[];let primeiro=true;let setentaPorcentoUsado=false;
   exp.forEach(p=>{
     let pct;
-    if(primeiro){pct=100;primeiro=false;viaUsada[p.via]=true;}
-    else if(!viaUsada[p.via]){pct=70;viaUsada[p.via]=true;}
-    else{pct=50;}
+    if(primeiro){
+      pct=100;primeiro=false;viaUsada[p.via]=true;
+    } else if(!viaUsada[p.via] && !setentaPorcentoUsado){
+      pct=70;viaUsada[p.via]=true;setentaPorcentoUsado=true;
+    } else {
+      pct=50;
+      if(!viaUsada[p.via]) viaUsada[p.via]=true;
+    }
     res.push({...p,pct,valorFinal:p.valorBase*(pct/100)});
   });
   const totalCir=res.reduce((s,r)=>s+r.valorFinal,0);
