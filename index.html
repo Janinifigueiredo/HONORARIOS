@@ -202,27 +202,33 @@ body{font-family:'Inter',sans-serif;background:var(--gray-100);color:var(--gray-
 // ─── CONFIG ───────────────────────────────────────────────
 const API_KEY = '$2a$10$EEyJg8FPQFufxL0I9HSylO6pGsBV0oxxW54oXxmr1nVC5KR7ogooW';
 const BIN_URL = 'https://api.jsonbin.io/v3/b';
-// BIN_ID fixo — mesmo bin em todos os dispositivos
-const BIN_ID_FIXO = localStorage.getItem('honorariosBinId') || null;
-let BIN_ID = BIN_ID_FIXO;
+const APP_VERSION = '6';
+if(localStorage.getItem('honorariosVersion') !== APP_VERSION){
+  localStorage.removeItem('honorariosBinId');
+  localStorage.removeItem('honorariosDB');
+  localStorage.setItem('honorariosVersion', APP_VERSION);
+}
+let BIN_ID = localStorage.getItem('honorariosBinId') || null;
 
 const DADOS_INICIAIS = {
   convenios:[
     {id:1000,nome:'Bradesco'},
-    {id:1001,nome:'CASSI'}
+    {id:1001,nome:'CASSI'},
+    {id:1002,nome:'Amil'}
   ],
   procedimentos:[
     {id:2001,convId:1000,codigo:'3050148-2',nome:'Epistaxe - cauterização da artéria esfenopalatina com microscopia - unilateral por videoendoscopia',valor:1015.64},
     {id:2002,convId:1000,codigo:'3050232-2',nome:'Sinusectomia maxilar endonasal por videoendoscopia',valor:856.31},
     {id:2003,convId:1000,codigo:'3050231-4',nome:'Etmoidectomia intranasal por videoendoscopia',valor:856.31},
-    {id:2004,convId:1000,codigo:'3050226-8',nome:'Sinusotomia frontal intranasal',valor:774.65},
-    {id:2005,convId:1000,codigo:'3050225-0',nome:'Sinusotomia maxilar intranasal',valor:755.76},
+    {id:2004,convId:1000,codigo:'3050225-0',nome:'Sinusotomia maxilar intranasal',valor:774.65},
+    {id:2005,convId:1000,codigo:'3050226-8',nome:'Sinusotomia frontal intranasal',valor:774.65},
     {id:2006,convId:1000,codigo:'3050136-9',nome:'Septoplastia (qualquer técnica, sem vídeo)',valor:523.95},
     {id:2007,convId:1000,codigo:'3050145-8',nome:'Turbinectomia ou turbinoplastia - unilateral',valor:181.27},
-    {id:2008,convId:1000,codigo:'3020524-7',nome:'Uvulopalatofaringoplastia (qualquer técnica local)',valor:960.57},
-    {id:2009,convId:1000,codigo:'3020505-0',nome:'Amigdalectomia das palatinas',valor:343.22},
-    {id:2010,convId:1000,codigo:'3020506-9',nome:'Amigdalectomia lingual',valor:343.22},
-    {id:2011,convId:1000,codigo:'3020527-1',nome:'Adenoidectomia por videoendoscopia',valor:409.93},
+    {id:2008,convId:1000,codigo:'3020524-7',nome:'Uvulopalatofaringoplastia (qualquer técnica local)',valor:984.59},
+    {id:2009,convId:1000,codigo:'3020505-0',nome:'Amigdalectomia das palatinas',valor:353.51},
+    {id:2010,convId:1000,codigo:'3020506-9',nome:'Amigdalectomia lingual',valor:353.51},
+    {id:2011,convId:1000,codigo:'3020527-1',nome:'Adenoidectomia por videoendoscopia',valor:422.23},
+    {id:2012,convId:1000,codigo:'3040315-4',nome:'Timpanotomia para tubo de ventilação - unilateral',valor:391.09},
     {id:3001,convId:1001,codigo:'3050148-2',nome:'Epistaxe - cauterização da artéria esfenopalatina com microscopia - unilateral por videoendoscopia',valor:1094.04},
     {id:3002,convId:1001,codigo:'3050232-2',nome:'Sinusectomia maxilar endonasal por videoendoscopia',valor:854.15},
     {id:3003,convId:1001,codigo:'3050231-4',nome:'Etmoidectomia intranasal por videoendoscopia',valor:854.15},
@@ -234,7 +240,12 @@ const DADOS_INICIAIS = {
     {id:3009,convId:1001,codigo:'3020505-0',nome:'Amigdalectomia das palatinas',valor:310.84},
     {id:3010,convId:1001,codigo:'3020506-9',nome:'Amigdalectomia lingual',valor:310.84},
     {id:3011,convId:1001,codigo:'3020527-1',nome:'Adenoidectomia por videoendoscopia',valor:848.65},
-    {id:3012,convId:1001,codigo:'3040315-4',nome:'Timpanotomia para tubo de ventilação - unilateral',valor:432.48}
+    {id:3012,convId:1001,codigo:'3040315-4',nome:'Timpanotomia para tubo de ventilação - unilateral',valor:432.48},
+    {id:4001,convId:1002,codigo:'3050136-9',nome:'Septoplastia (qualquer técnica, sem vídeo)',valor:310.08},
+    {id:4002,convId:1002,codigo:'3050145-8',nome:'Turbinectomia ou turbinoplastia - unilateral',valor:139.54},
+    {id:4003,convId:1002,codigo:'3050232-2',nome:'Sinusectomia maxilar endonasal por videoendoscopia',valor:1340.63},
+    {id:4004,convId:1002,codigo:'3050231-4',nome:'Etmoidectomia intranasal por videoendoscopia',valor:1418.51},
+    {id:4005,convId:1002,codigo:'3050148-2',nome:'Epistaxe - cauterização da artéria esfenopalatina com microscopia - unilateral por videoendoscopia',valor:1629.08}
   ]
 };
 
