@@ -506,16 +506,15 @@ function calcular(){
     }
   });
   exp.sort((a,b)=>b.valorBase-a.valorBase);
-  let viaUsada={};let res=[];let primeiro=true;let setentaPorcentoUsado=false;
+  let viaUsada={};let res=[];let primeiro=true;
   exp.forEach(p=>{
     let pct;
     if(primeiro){
       pct=100;primeiro=false;viaUsada[p.via]=true;
-    } else if(!viaUsada[p.via] && !setentaPorcentoUsado){
-      pct=70;viaUsada[p.via]=true;setentaPorcentoUsado=true;
+    } else if(!viaUsada[p.via]){
+      pct=70;viaUsada[p.via]=true;
     } else {
       pct=50;
-      if(!viaUsada[p.via]) viaUsada[p.via]=true;
     }
     res.push({...p,pct,valorFinal:p.valorBase*(pct/100)});
   });
